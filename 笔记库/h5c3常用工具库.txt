@@ -1,0 +1,852 @@
+<!--页面基本结构-->
+<!DOCTYPE html>  --------------------------------------------------简约DOCTYPE 声明
+<html>
+    <head lang="en">  ---------------------------------------------指定文档语言（也可以放在<html>标签中）
+        <meta charset="UTF-8">
+        <meta name="keywords" content="关键字1,关键字2,关键字3">
+        <meta name="description" content="第一单元测试">
+        <base href="http://www.w3school.com.cn/i/"/>
+        <base target="_blank" />
+        <title>Html5_css3测试1</title>
+        <link rel="stylesheet" href="css/style.css">  -------------不需要写type类型
+        <script src="js/custom.js"></script>  ---------------------不需要写type类型
+
+        <!--[if !IE]><!--> 除IE外都可识别 <!--<![endif]-->
+        <!--[if IE]> 所有的IE可识别 <![endif]-->
+        <!--[if IE 6]> 仅IE6可识别 <![endif]-->
+        <!--[if lte IE 6]> IE6以及IE6以下版本可识别 <![endif]-->
+        <!--[if gte IE 6]> IE6以及IE6以上版本可识别 <![endif]-->
+        <!--[if lt IE 6]> IE6以下版本可识别 <![endif]-->
+    </head>
+    <body>
+      …………
+    </body>
+</html>
+根据不同的IE引用不同的文件：注：此处必须严格按照底下的写法去写，比如 “IE 6”  之间要有空格，否则会出错！
+lte：就是Less than or equal to的简写，也就是小于或等于的意思。
+lt ：就是Less than的简写，也就是小于的意思。
+gte：就是Greater than or equal to的简写，也就是大于或等于的意思。
+gt ：就是Greater than的简写，也就是大于的意思。
+! ： 就是不等于的意思，跟javascript里的不等于判断符相同
+
+<!--重点标签+标签特性-->
+
+
+
+/*****<a>*****/
+<a href="url" target="_self  _blank  _top  _parent"></a>
+_blank：在新窗口中打开被链接文档。
+_self：默认。在相同的框架中打开被链接文档。
+_parent：在父框架集中打开被链接文档。
+_top：在指定的框架中打开被链接文档。
+[锚点]
+<a href="#Value">点击我</a>     <div id="Value" name="Value">目标内容</div>
+注意：1、href值中的href值：目的是跳转到某个页面中的锚点目标对象
+     2、写id 和 name为的是兼容性更高，一般只要写name就可以了
+     3、对于ie8，如果目标内容是空的是不会跳转的，所以可以为空的位置增加一个空格 " "   <div id="Value" name="Value"> </div>
+
+
+
+/*****<meter>*****/
+标尺标签[Firefox, Chrome, Opera 以及 Safari6+支持。IE不支持]
+<meter value="" min="" max="" low="" high="" form="form_id"></meter>
+min：范围最小值
+max：范围最大值
+value：尺度值
+low：范围的低值[若低于此值，则尺度条变色]
+high：范围的高值[若高于此值，则尺度条变色]
+form：绑定到某个form表单
+optimum：？？？
+[value值可以是>=0的整数，也可以是小数(若是小数可以不写min max，它会自动以1作为最大值，0作为最小值)，标签和标签之间可以不写任何内容，也可以写内容不过不会显示]
+
+
+
+/*****<progress>*****/
+进度标签(加载进度，下载进度)
+<progress value="90" max="100">
+max：范围最大值
+value：进度值
+
+
+
+/*****<iframe>*****/
+<iframe src="装载某个页面" width="200" height="200"></iframe>
+frameborder：0/1，规定了引入的框架标签是否有边框
+marginheight：定义 iframe 的顶部和底部的边距？？？
+marginwidth：定义 iframe 的左侧和右侧的边距？？？
+sandbox：启用一系列对 <iframe> 中内容的额外限制。
+        ""：禁止以下所有限制
+        allow-forms：允许表单提交
+        allow-same-origin：允许 iframe 内容被视为与包含文档有相同的来源
+        allow-scripts：允许脚本执行
+        allow-top-navigation：允许 iframe 内容从包含文档导航（加载）内容
+
+scrolling：[值：yes/no/auto]，规定是否在 iframe 中显示滚动条。
+name：规定<iframe>的名字
+seamless：[值：seamless]，当设置该属性后，它规定了 <iframe> 看上去像是包含文档的一部分（无边框或滚动条）
+width;height:px/%,定义<iframe>宽高
+
+
+
+/*****表单*****/
+*placeholder    placeholder="请输入手机号码"
+                修改placeholder颜色：
+                //伪元素
+                ::-webkit-input-placeholder { /* WebKit browsers */
+                    color:    #999;
+                    text-align: center
+                }
+                //伪类
+                :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+                    color:    #999;
+                }
+                //伪元素
+                ::-moz-placeholder { /* Mozilla Firefox 19+ */
+                    color:    #999;
+                }
+                //伪类
+                :-ms-input-placeholder { /* Internet Explorer 10+ */
+                    color:    #999;
+                }
+
+required        required="required" 注：这个特性，可以不用写入值，直接写特性即可
+autofocus       autofocus="autofocus",同上，可以不用写值，直接写特性值即可(一个页面只有一个)
+disabled        disabled="disabled"  同上，使控件无效不可用(若要变为无用状态：1、设置其值为false，或者删除此特性)
+checked         checked="checked"    单选/多选选中状态
+selected        selected="selected"  下拉列表默认选中
+
+/*H5新增属性*/
+form:   作用：让处于外部的表单控件依旧可以作用于某个表单，值是某form标签的id值
+formaction:  作用：让不同的按钮提交不同的action
+***list：文本框下拉提示信息；当在文本框获得焦点后，弹出下拉提示（比如曾经搜索过什么，非常实用！）
+eg：<form>
+        请输入图书名称：<input type="text" list="books"/>
+    </form>
+    <datalist id="books">  它是一种隐藏的状态！
+        <option value="book1">书1</option>
+        <option value="book2">书2</option>
+        <option value="book3">书3</option>
+    </datalist>
+
+
+表单标签：
+<form action="提交的url" method="post/get" name="表单唯一标识" target="_blank/_parent/_top/_self">
+    /*单行文本*/maxlength特性：决定了输入的最大字符数
+        <label for="某个表单的id号">单行文本</label>    <input type="text/email/color" required pattern="正则表达式" maxlength="11"/>
+        <input type="number" name="points" min="0" max="10" /> 同样，提交或如果有不符合的数值，会提示
+        required：要求这个表单必须填写，否则提交后会有提示 pattern：要求填入的内容必须符合某正则表达式
+    /*多行文本*/
+        <textarea cols="列数" rows="行数"></textarea>
+    /*密码框*/
+        <label>密码输入</label>    <input type="password"/>
+    /*隐藏域*/
+        <label>隐藏域</label>    <input type="hidden"/>
+        除此之外：display:none(不占据空间)   visibility:visible/hidden(依旧占据空间)
+    /*单选*/checked:默认选中；disabled="disabled"|disabled
+        <label>选项1</label>    <input type="radio" name="radio_test" value="a1" checked="checked"|checked/><br>
+        <label>选项2</label>    <input type="radio" name="radio_test" value="a2"/><br>
+        <label>选项3</label>    <input type="radio" name="radio_test" value="a3"/><br>
+    /*多选*/
+        <label多选1</label><input type="checkbox" name="checkbox_test" value="b1"/>
+        <label多选2</label><input type="checkbox" name="checkbox_test" value="b2"/>
+        <label多选3</label><input type="checkbox" name="checkbox_test" value="b3"/>
+    /*下拉*/
+        /* multiple="multiple"决定了可否选中多个，有了这个特性则会显示所有选项不必点击下拉，size决定了初始化显示多少个option*/
+        <select  multiple="multiple" size="2">
+            <option selected="selected" value="a">a</option>/*selected决定初始化默认选项，同样可以只写selected*/
+            <option value="b">b</option>
+            <option value="c">c</option>
+        </select>
+    /*提交文件*/
+    <input type="file" multiple> multiple特性决定了是否可以多项选择
+    /*提交、按钮、清空*/
+        <input type="submit/button/reset" value="显示的文本"/> 无法用图片表示
+        <button type="submit/button/reset">文本或者图片</button>
+</form>
+
+HTML5通用特性：*代表是html5才有的
+accesskey                 规定访问元素的键盘快捷键
+class                     规定元素的类名（用于规定样式表中的类）。
+*contenteditable         规定是否允许用户编辑内容。
+*contextmenu             规定元素的上下文菜单。
+dir                         规定元素中内容的文本方向。
+*draggable                 规定是否允许用户拖动元素。
+*dropzone                 规定当被拖动的项目/数据被拖放到元素中时会发生什么。
+*hidden                     规定该元素是隐藏的，所有标签都可用的。被隐藏的元素不会显示。hidden="true"  等价于css：display:none
+id                         规定元素的唯一 ID。
+lang                     规定元素中内容的语言代码。
+*spellcheck                 规定是否必须对元素进行拼写或语法检查,true false。
+style                     规定元素的行内样式。
+tabindex                 规定元素的 tab 键控制次序。
+title                     规定有关元素的额外信息(在普通元素加上就是鼠标放上去的提示信息)
+
+特殊的表单控件：
+<input type="color">     颜色选择器，值为#XXXXXX
+<input type="date/month/week/time">     日期选择
+<input type="range" min="1" max="100" step="1">     拖动条step：是步长
+<input type="email">     只能输入email格式，如果格式不正确，无法提交，并且有提示
+<input type="number" min="1" max="100">    只能输入数字（*在移动端会直接弹出数字键盘）
+
+多媒体
+<video controls>   controls：要么写，要么不写，是否显示控制条
+    里面的多个视频文件：不是全部播放，而是如果第一个能播放，则播放第一个，否则第二个，以此类推
+    <source src="url……mp4"></source>
+    <source src="url……wmv"></source>
+    <source src="url……mkv"></source>
+</video>
+
+
+
+***SVG矢量绘图***.svg文件(像图片一样引入，兼容性好可以支持很早的浏览器)/在html代码中嵌入，但只支持到IE9+
+
+是使用 XML 来描述二维图形和绘图程序的语言。
+使用方式：1、<svg>标签   2、作为.svg文件引用到<img>或者css背景
+
+    (1)外置引用：
+    <?xml version="1.0" standalone="no"?>
+    <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+            <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <rect width="300" height="100" style="fill:rgb(0,0,255);stroke-width:1; stroke:rgb(0,0,0)"/>
+            </svg>
+
+    (1)<svg>标签：
+           <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                   <!--后面的图形会覆盖前面的图像-->
+                   <circle id="circle1" cx="100" cy="50" r="40"></circle>
+                   <circle id="circle2" cx="100" cy="100" r="40" stroke="#222222" stroke-width="5" fill="#777777"></circle>
+           </svg>
+
+
+基本图形
+<rect>            矩形
+<circle>          圆形
+<ellipse>         椭圆
+<line>            线
+<polyline>        折线
+<polygon>         多边形
+<path>            路径
+
+矩形：
+<svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <!--后面的图形会覆盖前面的图像-->
+        <rect x="20" y="20" rx="20" ry="20" width="250" height="250" style="fill:#000000;stroke:#000000;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9;opacity:0.5"/>
+
+        x,y:距离窗口左侧和顶部距离
+        rx,ry:定义了四个角的弧度，有点像border-radius
+        width,height:定义了举行的宽高
+
+        css：
+        fill:定义矩形填充颜色
+        fill-opacity:填充颜色透明度(0-1)
+        stroke:定义矩形边框颜色
+        stroke-width:边框宽度
+        stroke-opacity:定义边框透明度(0-1)
+</svg>
+
+圆形：
+        <circle cx="100" cy="100" r="40"></circle>
+        cx,cy:定义了圆心到窗口左侧和顶部的距离
+        r：定义了半径
+
+        css：同矩形
+
+椭圆：
+       <ellipse cx="300" cy="150" rx="200" ry="80"/>
+       cx,cy:定义了圆心到窗口左侧和顶部的距离
+       rx,ry:定义了水平、垂直半径
+
+线段：
+      <line x1="0" y1="0" x2="300" y2="300"/>
+      x1,y1;x2,y2：分别是两个点的坐标
+
+多变形：(三角形，五角星……)
+       <polygon points="220,100 300,210 170,250"/>
+       points="若干点的集合：(0,0)(100,100)(150,150)"，即逗号的两端才是一个坐标点值
+
+折线：
+    <polyline points="0,0 0,20 20,20 20,40 40,40 40,60"/>
+    和多边形一样，但是不应该闭合（实际测试确实能够闭合）
+
+路径：
+
+
+
+
+
+    <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <!--后面的图形会覆盖前面的图像-->
+        <circle id="circle1" cx="100" cy="50" r="40"></circle>
+        <circle id="circle2" cx="100" cy="100" r="40" stroke="#222222" stroke-width="5" fill="#777777"></circle>
+    </svg>
+
+
+    <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <!--多边形中points参数：坐标点(200,100)(300,210)(170,250),即逗号左右两个值才是一组-->
+        <polygon points="220,100 300,210 170,250" style="fill:#cccccc; stroke:#000000;stroke-width:1"></polygon>
+    </svg>
+
+
+    <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <!--多边形中points参数：坐标点(0,0)(0,20)(20,20),即逗号左右两个值才是一组-->
+        <polyline points="0,0 0,20 20,20 20,40 40,40 40,60" style="fill:white;stroke:red;stroke-width:2"></polyline>
+    </svg>
+
+
+    <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <!--椭圆的特点是：圆半径相同，但是椭圆半径不同，有不同的rx ry-->
+        <ellipse cx="240" cy="100" rx="220" ry="30" style="fill:purple"></ellipse>
+        <ellipse cx="220" cy="70" rx="190" ry="20" style="fill:lime"></ellipse>
+        <ellipse cx="210" cy="45" rx="170" ry="15" style="fill:yellow"></ellipse>
+    </svg>
+
+
+    <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <rect x="20" y="20" width="250" height="250" style="fill:blue;stroke:pink;stroke-width:5; fill-opacity:0.5;stroke-opacity:0.9"></rect>
+    </svg>
+
+
+    <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <!--x1,y1定义了起始位置，x2,y2定义了x轴，y轴的长度，从而绘制出对角线，所以也定义了角度，-->
+        <line x1="10" y1="10" x2="300" y2="300" style="stroke:rgb(99,99,99);stroke-width:2"></line>
+    </svg>
+
+
+
+
+
+***Canvas***
+浏览器支持：Internet Explorer 9、Firefox、Opera、Chrome 以及 Safari 支持 <canvas> 及其属性和方法。
+注释：Internet Explorer 8 以及更早的版本不支持 <canvas> 元素。
+
+                          <----颜色、样式和阴影---->
+[属性]                              [描述]
+fillStyle                 设置或返回用于填充绘画的颜色、渐变或模式
+strokeStyle                 设置或返回用于笔触的颜色、渐变或模式
+shadowColor                 设置或返回用于阴影的颜色
+shadowBlur                 设置或返回用于阴影的模糊级别
+shadowOffsetX             设置或返回阴影距形状的水平距离
+shadowOffsetY             设置或返回阴影距形状的垂直距离
+
+
+[方法描述]
+createLinearGradient()    创建线性渐变（用在画布内容上）
+createPattern()            在指定的方向上重复指定的元素
+createRadialGradient()    创建放射状/环形的渐变（用在画布内容上）
+addColorStop()            规定渐变对象中的颜色和停止位置
+
+
+线条样式
+[方法描述]
+lineCap                   设置或返回线条的结束端点样式
+lineJoin               设置或返回两条线相交时，所创建的拐角类型
+lineWidth               设置或返回当前的线条宽度
+miterLimit               设置或返回最大斜接长度
+
+
+矩形
+[方法描述]
+rect()                   创建矩形
+fillRect()               绘制“被填充”的矩形
+strokeRect()           绘制矩形（无填充）
+clearRect()               在给定的矩形内清除指定的像素
+
+
+路径
+[方法描述]
+fill()                   填充当前绘图（路径）
+stroke()               绘制已定义的路径
+beginPath()               起始一条路径，或重置当前路径
+moveTo()               把路径移动到画布中的指定点，不创建线条
+closePath()               创建从当前点回到起始点的路径
+lineTo()               添加一个新点，然后在画布中创建从该点到最后指定点的线条
+clip()                   从原始画布剪切任意形状和尺寸的区域
+quadraticCurveTo()       创建二次贝塞尔曲线
+bezierCurveTo()           创建三次方贝塞尔曲线
+arc()                   创建弧/曲线（用于创建圆形或部分圆）(圆心x,圆心y,半径r,起始角度sAngle,终止角度eAngle,false顺时针画/true逆时针画)
+arcTo()                   创建两切线之间的弧/曲线
+isPointInPath()           如果指定的点位于当前路径中，则返回 true，否则返回 false
+
+
+转换
+                      方法描述
+scale()                  缩放当前绘图至更大或更小
+rotate()              旋转当前绘图
+translate()              重新映射画布上的 (0,0) 位置
+transform()              替换绘图的当前转换矩阵
+setTransform()          将当前转换重置为单位矩阵。然后运行 transform()
+
+
+文本
+属性    描述
+font                  设置或返回文本内容的当前字体属性
+textAlign              设置或返回文本内容的当前对齐方式
+textBaseline          设置或返回在绘制文本时使用的当前文本基线
+[方法描述]
+fillText()              在画布上绘制“被填充的”文本
+strokeText()          在画布上绘制文本（无填充）
+measureText()          返回包含指定文本宽度的对象
+
+
+图像绘制
+[方法描述]
+drawImage()             向画布上绘制图像、画布或视频
+
+
+像素操作
+属性    描述
+width                 返回 ImageData 对象的宽度
+height                 返回 ImageData 对象的高度
+data                 返回一个对象，其包含指定的 ImageData 对象的图像数据
+[方法描述]
+createImageData()     创建新的、空白的 ImageData 对象
+getImageData()         返回 ImageData 对象，该对象为画布上指定的矩形复制像素数据
+putImageData()         把图像数据（从指定的 ImageData 对象）放回画布上
+
+
+合成
+属性    描述
+globalAlpha                    设置或返回绘图的当前 alpha 或透明值
+globalCompositeOperation    设置或返回新图像如何绘制到已有的图像上
+
+
+其他
+[方法描述]
+save()                        保存当前环境的状态
+restore()                    返回之前保存过的路径状态和属性
+createEvent()
+getContext()
+toDataURL()
+
+/*------------------------------CSS3--------------------------------*/
+重置样式：即public.css文件
+
+注：所有的css的命名尤其是类的命名和id的命名都不能以“数字”开头，否则css不会识别
+【浏览器兼容】
+-o-       opera
+-ms-      IE
+-webkit-  chrome Safari
+-moz-     火狐
+
+hack写法:      * _  IE6(星 下划线)
+              *   IE7(星)
+              条件注释法：<!--[if lte IE 8]><![endif]-->
+!important    对于IE6——如果在同一个{}中那么有！的和其它重复，那么！无效，优先级低;如果有多个{}{!}再重复，那么!有效，优先级高
+              对于非IE6   有！的优先级高
+
+【盒子模型】
+对于IE：模型：content+padding+border+margin；而IE的content包括：content+padding+border
+W3C：模型：content+padding+border+margin；W3C的content包括：content（这个才是标准！）
+
+【隐藏方式】
+display:none(不占据空间)   visibility:visible/hidden(依旧占据空间)   opacity:0 兼容性ie：filter:alpha(opacity=50)(占据空间)   还有一种是对表单的隐藏域(不占据空间)：<input ……  type="hidden">
+
+HTML5背景-background：所有浏览器都支持以下
+background:url(a/b/c.jpg) no-repeat center;
+background-attachment:fixed/scroll    背景图片是固定不动/可以滚动
+background-color:设置背景颜色
+background-image:设置背景图片路径url()
+background-position:设置背景图片的起始位置：即从图片哪个位置起始开始平铺在div上
+比如
+
+top left                         默认从图片的左上角开始，如果您仅规定了一个关键词，那么第二个值将是"center"。默认值：0% 0%。
+top center
+top right
+center left
+center center
+center right
+bottom left
+bottom center
+bottom right
+x% y%                           第一个值是水平位置，第二个值是垂直位置。左上角是 0% 0%。右下角是 100% 100%。如果您仅规定了一个值，另一个值将是 50%。
+xpos ypos                       第一个值是水平位置，第二个值是垂直位置。左上角是 0 0。单位是像素 (0px 0px) 或任何其他的 CSS 单位。
+                                如果您仅规定了一个值，另一个值将是50%。您可以混合使用 % 和 position 值。
+
+(css3)border-radius            border-top-left-radius:2em;     其值可以是：px单位，%单位（宽高都一样的情况下，50%为圆形，否则为椭圆形）
+                               border-top-right-radius:2em;
+                               border-bottom-right-radius:2em;
+                               border-bottom-left-radius:2em;
+
+(css3)box-shadow                参数：h-shadow(水平位置px) v-shadow(垂直位置px)默认是右下方阴影：都是正值 blur(模糊范围，px) spread(阴影半径) color(颜色) inset(内阴影，一般用不上)
+                               所谓阴影不是border，而是就像实体物件一样，是一个投影，4个参数的前两个（X轴，Y轴）就像太阳在不同位置所造成的方向
+                               前两个参数决定了位置，第三个参数决定的浓淡程度（辐射范围），第四个参数决定了阴影的半径大小（假设去掉第三个参数就会发现，阴影变为实体，不会发虚）
+                               注：也可以为table tr td 增加
+
+(css3)text-shadow              eg:p{text-shadow:5px(横向偏移) 5px(纵向偏移) 2px(虚化半径) #000000}若有多个则逗号隔开
+(css3)box-sizing               默认width、height只是content的宽高，box-sizing其值：content-box(默认) padding-box(content+padding) border-box(content+padding+margin)
+
+【三角型】                      height:0px; width:0px;
+                               border-bottom:50px solid #006633;
+                               border-left:50px solid transparent(边框颜色为透明);
+                               border-right:50px solid transparent;
+颜色表示：                      16进制表示法：#FF0000,每两位是一组表示从0~255     rgb表示法：rgb(255,255,0);
+伪类                           ::(-webkit-)selection{background-color:#939393;color:#000000}   选中的文本改变背景色和颜色
+                               :link       连接平常的状态
+                               :visited    连接被访问过之后
+                               :hover      鼠标放到连接上的时候
+                               :active     连接被按下的时候(场景：a定义为块级元素时，点击瞬间改变背景颜色，还是透明的：background-color: rgba(0,0,0,0);/#某颜色)
+
+【字体修饰】
+text-overflow                  clip ：超出的部分切掉；ellipsis:超出部分显示“……”——到喜啦就常用
+outline                        设定轮廓线，所有浏览器都支持，p{outline:颜色 样式 宽度 #00FF00 dotted thick;}
+font-family                    定义一系列字体列表：eg：font-family:a,b,c,d;如果有a字体使用a，如果没有a字体则查找b字体，以此类推；
+服务器字体                      @font-face
+                               {
+                                   font-family：自定义的字体名字，一般和服务器字体一致。
+                                   font-style：设置文本样式。
+                                   font-variant：设置文本是否大小写。
+                                   font-weight：设置文本的粗细。
+                                   font-stretch：设置文本是否横向的拉伸变形。
+                                   font-size：设置文本字体大小。
+                                   src：设置自定义字体的相对路径或者绝对路径，注意，此属性只能在@font-face规则里使用。
+                               }
+                               eg：
+                               @font-face {
+                                   font-family: DeliciousRoman;
+                                   src: url('http://www.font-face.com/fonts/delicious/Delicious-Roman.otf');
+                               }
+                               p{font-family:DeliciousRoman,其他字体}
+
+/********布局********/
+float                          只要某个标签加上float，那么他就会变为块级元素，即display:block
+                               (测试后：如果 <div 前>为普通，<div 后>为float(left)，那么后者不会覆盖前者！前者不论是否设置宽度都会占据一整行，
+                               相反浮动在前，普通在后，那么如果普通的内容不够多，就会跑到浮动模块的右侧，)
+overflow                       visible(默认)；既不剪裁，也不加滚动条
+                               auto：自动添加滚动条，即当空间不够使的时候
+                               ****hidden:超过空间则隐藏
+                               scroll:总是显示滚动条
+overflow-x/-y                  属性值同上，只不过是x轴，y轴，这个特性尤其是在手机上有用：对于ios9以上版本，会有一个bug：侧滑菜单弹出的一瞬间会出现菜单和body同时缩小，出现缩小的屏幕
+                               原因在于，侧滑出现的一瞬间是会占用空间，横向出现滚动条
+overflow-scrolling             auto：默认，效果就是滑动时比较死，没有缓冲效果；touch：当我们滑动很长的列表时，会有一个减速的缓冲减速效果
+display                        ***inline-block   1、具有块级元素特点（宽高margin等都可设置）2、又有内联元素特点，不用设置float即可同行显示.
+                                                    但此处需要特别注意：如果<div>1<div>此处换行<div>2<div>,div设置为inline-block会有默认的宽度bug，所以必须连续书写才能避免此bug
+                               ***inline-table   同上，
+                               table
+                               ***table-cell     常用于垂直对齐vertical-align
+                               table-row
+margin                         用margin时，很容易出现的问题是：自己和父层(此时父层一般是有宽高，有背景平铺，但是无实体内容，)div都会动，而不是以父层而动的，所以一般解决方案：父层：overflow:hidden
+
+position                       只要设置了定位，就会变为块级元素,并脱离文档流
+                               absolute：生成绝对定位的元素，它的参考系是父级中第一个设定为posiiton:relative的元素。
+                               注意：若父级是absolute，子级也是，那么子级会把父级当做relative来用(少)
+                               fixed：生成绝对定位的元素，相对于“浏览器窗口”进行定位
+                               注意：fixed有两种用法：1、如上，相对于浏览器窗口定位，并设left top等定值；2、则是父级有absolute/relative，同时不设定fixed的left，top，这样，当父级移动时，它
+                               也会跟着移动，也就是说若不设置fixed的top/left等值，它就会依附父级位置
+                               relative生成相对定位的元素，相对于其正常位置进行定位。
+                               static    默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）。
+                               inherit    规定应该从父元素继承 position 属性的值。
+
+
+***Flex弹性盒子：
+1、flex：none | [ flex-grow ] || [ flex-shrink ] || [ flex-basis ]
+  [ flex-grow ]：定义弹性盒子元素的扩展比率。
+  [ flex-shrink ]：定义弹性盒子元素的收缩比率。
+  [ flex-basis ]：定义弹性盒子元素的默认基准值。
+<ul id="flex">
+    <li>a</li>
+    <li>b</li>
+    <li>c</li>
+</ul>
+
+#box{display:-webkit-flex;display:flex;width:800px;margin:0;padding:0;list-style:none;}
+#box3 li:nth-child(1){-webkit-flex:1 1 300px;flex:1 1 300px;background:#999;}
+#box3 li:nth-child(2){-webkit-flex:1 2 500px;flex:1 2 500px;background:#aaa;}
+#box3 li:nth-child(3){-webkit-flex:1 3 600px;flex:1 3 600px;background:#ccc;}
+
+上例中，定义了父容器宽（即主轴宽）为800px，由于子元素设置了伸缩基准值flex-basis，相加300+500+600=1400，那么子元素将会溢出1400-800=600px；
+由于同时设置了收缩因子，所以加权综合可得300*1+500*2+600*3=3100px；
+于是我们可以计算a,b,c将被移除的溢出量是多少：
+a被移除溢出量：300*1/3100*600=3/31，即约等于58px
+b被移除溢出量：500*2/3100*600=10/31，即约等于194px
+c被移除溢出量：600*3/3100*600=18/31，即约等于348px
+最后a,b,c的实际宽度分别为：300-58=242px, 500-194=306px, 600-348=252px
+
+2、flex-flow：[ flex-direction ] || [ flex-wrap ]
+
+flex-direction：row | row-reverse | column | column-reverse
+                row：横向从左到右排列（左对齐），默认的排列方式。
+                row-reverse：反转横向排列（右对齐，从后往前排，最后一项排在最前面。
+                column：纵向排列。
+                row-reverse：反转纵向排列，从后往前排，最后一项排在最上面。
+flex-wrap：nowrap | wrap | wrap-reverse
+            nowrap：当子元素溢出父容器时不换行。
+            wrap：当子元素溢出父容器时自动换行。
+            wrap-reverse：反转 wrap 排列。
+<---------------------动画------------------->
+
+1、基本变换transform
+支持
+{
+    Internet Explorer 10+、Firefox、Opera 支持 transform 属性。
+    Internet Explorer 9 支持替代的 -ms-transform 属性（仅适用于 2D 转换）。
+    Safari 和 Chrome 支持替代的 -webkit-transform 属性（3D 和 2D 转换）。
+    Opera 只支持 2D 转换。
+}
+写法
+{
+    -webkit-transform
+    -ms-transform  只支持2D
+    transform
+}
+
+transform:none->不设置
+transform-origin：   x轴(left center right px %)  y轴(top center bottom px %)   z轴
+perspective：Xpx     人眼睛距离动画距离,X越大离动画越远，效果越不明显，反之越明显
+
+            translate(x,y)             定义 2D 移动 单位：px  %(百分比就是移动相当于自身的，100%是移动一个身位)，如果只是设定一个值，就只沿着X轴移动
+            translate3d(x,y,z)         定义 3D 转换。
+            translateX(x)             定义转换，只是用 X 轴的值。    测试
+            translateY(y)             定义转换，只是用 Y 轴的值。    测试
+            translateZ(z)            定义转换，只是Z轴的值。
+
+            scale(x,y)                 定义 2D 缩放转换。    测试
+            scale3d(x,y,z)             定义 3D 缩放转换。
+            scaleX(x)                 通过设置 X 轴的值来定义缩放转换。    测试
+            scaleY(y)                 通过设置 Y 轴的值来定义缩放转换。    测试
+            scaleZ(z)                 通过设置 Z 轴的值来定义 3D 缩放转换。
+
+            rotate(angle)             定义 2D 旋转，在参数中规定角度。就是Z轴
+            rotate3d(x,y,z,angle)     定义 3D 旋转。
+            rotateX(angle)             定义沿着 X 轴的 3D 旋转。    测试
+            rotateY(angle)             定义沿着 Y 轴的 3D 旋转。    测试
+            rotateZ(angle)             定义沿着 Z 轴的 3D 旋转。
+(1)如果要加载多种变化  transform:translate(10px,10px) scale(2,2) rotate(30deg)   可以这样；
+(2)当在某个div用margin时，他的参考是没有“变形过”的div，即变形过的并没有真正占据空间
+(3)所有css动画只有对“块级”元素才有意义！内联元素有动画但在执行完后会突然恢复到原始状态
+
+2、transition 是一个复合属性
+支持
+{
+    Internet Explorer 10、Firefox、Opera 和 Chrome 支持 transition 属性。
+    Safari 支持替代的 -webkit-transition 属性。
+    注释：Internet Explorer 9 以及更早版本的浏览器不支持 transition 属性。
+}
+写法
+{
+    -webkit-transition
+    transform
+}
+transition    transition-property:all 或者 指定css属性名称，若有多个以逗号分隔：eg:background-color:A 5s ease-in,top:10px 5s ease-in
+              transition-duration:5s：指定时间
+              transition-timing-function:指定变化速率
+                                         linear：匀速
+                                         ease：慢速开始，然后变快，然后慢速结束的过渡效果
+                                         ease-in：规定以慢速开始的过渡效果
+                                         ease-out：规定以慢速结束的过渡效果
+                                         ease-in-out：规定以慢速开始和结束的过渡效果
+                                         cubic-bezier：特殊的立方贝塞尔曲线效果
+              transition-delay:指定动画延迟时间
+
+
+
+
+3、animation动画帧(其实就是把transition中的css模块单独拿出去;并且已经加上了transition:all Xs)
+
+总结：(1)动画过程是虚拟的，他仅仅是执行了变幻过程，而并没有真正的加入到原始div模块中的css中！
+     在0%/from的css中其实是动态的覆盖了/添加到原始css中，但确是虚拟的，最终显示依旧是原始css，而不是动态动画的最终css结果
+
+@keyframes|@-webkit-keyframes 动画名称{
+    0% {
+        background-color:#f2dede;
+    }
+    25%{
+        background-color:#5cb85c;
+    }
+    50%{
+        background-color: #077886;
+    }
+    75%{
+        background-color: #5cb85c;
+    }
+    100%{
+        background-color: #f2dede;
+    }
+
+    或者：
+    from{
+        cssList
+    }
+    to{
+        cssList
+    }
+}
+
+选择器{
+    animation:动画名字 持续时间(s) 变化速率;
+    -webkit-animation:动画名字 持续时间(s)
+}
+animation:复合属性(IE10+/Firefox/Opera支持,Safari/Chrome 支持 -webkit-animation)
+
+animation-name                 规定 @keyframes 动画的名称
+animation-duration             规定动画完成一个周期所花费的秒。0s是默认值
+animation-timing-function     规定动画的速度曲线。默认是 "ease"
+                                 linear：匀速
+                                 ease：慢速开始，然后变快，然后慢速结束的过渡效果
+                                 ease-in：规定以慢速开始的过渡效果
+                                 ease-out：规定以慢速结束的过渡效果
+                                 ease-in-out：规定以慢速开始和结束的过渡效果
+                                 cubic-bezier：特殊的立方贝塞尔曲线效果
+animation-delay               规定动画何时开始。默认是 0s,也可以是负值：负值直接执行动画并且直接跳到动画某一秒
+animation-iteration-count     规定动画被播放的次数。默认是 1，infinite:无限次
+animation-direction             规定动画是否在下一周期逆向地播放。normal:突然从头开始，alternate则是动态的从结束状态回归到初始状态（前提是：循环了很多次；比如d动画无限循环）
+
+
+animation-play-state         规定动画是否正在运行或暂停。默认是 "running"，如果要暂停：animation-play-state:paused;
+animation-fill-mode             ***规定动画在执行后或者之前动画是否可见。
+                             四个值：
+                                none    不改变默认行为。
+                                forwards    当动画完成后，保持最后一个属性值（在最后一个关键帧中定义）。
+                                backwards    在 animation-delay 所指定的一段时间内，在动画显示之前，应用开始属性值（在第一个关键帧中定义）。
+                                both    向前和向后填充模式都被应用。
+
+
+<---------------------响应式布局RWD (Responsive Web Design)只支持>=IE9的浏览器------------------->
+
+视口和屏幕尺寸不是同一个概念。 视口是指浏览器窗口内的内容区域，不包含工具栏、标签栏等（就是真正显示内容的区域body开始），屏幕尺寸则是物理设备的大小（24寸、1080p）
+
+一、媒体查询
+<header>
+    <meta name="viewport" content="initial-scale=2.0,width=device-width,maximum-scale=3,minimum-scale=0.5",user-scalable=no></meta>
+</header>
+initial-scale            页面初始化放大倍数；1.0原样输出，2.0是2倍输出
+width=device-width       告诉浏览器，页面的宽度等于设备宽度
+maximum-scale            最大放大到多少倍
+minimum-scale            最小缩小到多少倍
+user-scalable            是否允许放大缩小
+
+二、瀑布流
+浏览器默认字体：16px
+即body
+{
+    font-size:16px;
+    font-size:100%;
+    font-size:1em;
+}
+
+公式：目标元素尺寸/上下文尺寸=百分比尺寸，注意：此公式的上下文不一定是最近元素，如果最近元素无宽高设定值，那就会上溯直到找到相对值得层，并当做上下文。
+em：它是一个相对的字体，公式同上。字体也是一样是相对最近的有字体值的；
+
+弹性图片：
+<img src="" width="百分比">
+百分比：这里的值不是相对图片本身的大小而是相对包围它的父级宽度的大小，比如原始图片大小是100*100，外层是500*500，width是50%，那么图片width的像素值是250px而不是50px，高度则是自适应，即百分比是相对外层宽度的值
+图片真实大小=百分比*外层宽度大小
+img.imgScale
+{
+    width:70%;
+    max-width:50%;//这两行代码相当于width=50%;
+    如果只写第二行，因为你限制的是最大值(此时width=图片大小，而且width的百分比=图片大小/外层大小且肯定小于50%)，图片自然会原始输出；
+    当达到50%时，就会保持这个值不变
+}
+
+
+【height百分比】
+高度百分比极为特殊：因为，1、它不会像width一样冒泡式向上级寻找，它只能是直接父级继承；2。若父级没有设置css的显式高度，仅仅是因为内容而撑出来的高度，对于子级而言父级依旧是没有高度的。
+<div height="100%">
+    1层
+    <div>2层
+        <div height="50%">3层</div>
+    </div>
+</div>
+结果是：第三层高度无效，原因是第二层没有继承父级的高度（也就是没写，默认是auto），第三级继承第二级的高度就会未定义。
+
+【width百分比】
+1、宽度参考值是上级的content值(但实际可以使用box-sizing来设置content：content-box（default），border-box，padding-box)
+2、宽度百分比具有继承性，而且是多级继承，同上例子，那么第三城就会继承第一层的值得50%。而第二层因为没有写，所以是和第一层一样的。
+需要注意的是：margin,padding的所有百分比值都是相对父级的宽度而言的，不论是left,top,right,bottom,
+但是绝对定位又有所不同：left/right是相对父级的宽度而言的，而top/bottom则是对高度而言的。
+
+【定位left，top，width，height百分比】
+width/height:是以父级的content+padding为参考系（若父级未设置高度， 只有padding高度，也是可以滴）
+left：父级的content的width为参考系，
+top：父级的content的height为参考系。
+
+【margin百分比】
+同上，是以上级content为参考
+
+em和px[em读M]
+浏览器中的字体默认字体是：16px/100%/1em都是一样的
+line-height:的值如果是百分比/em是相对是本身的模块的字体大小而言的
+比如：font-size：16px ;line-height:2em=32px
+
+
+
+媒体宽度自适应：
+@media (min-width: 768px){ //>=768的设备 }
+@media (max-width: 992px){ //<=992的设备 }
+
+所以：书写顺序一句话：max-width:从大到小；min-width:从小到大；(越往下越应该收缩)
+
+因为如果是1440,由于1440>768那么你的1200就会失效。
+所以我们用min-width时，小的放上面大的在下面，同理如果是用max-width那么就是大的在上面，小的在下面
+@media (max-width: 1199){ //<=1199的设备 }
+@media (max-width: 991px){ //<=991的设备 }
+@media (max-width: 767px){ //<=768的设备 }
+
+@media [设备名] only （选取条件） not （选取条件） and（设备选取条件），设备二{sRules}
+设备名：all   screen电脑屏幕   handheld手持设备   braille盲文   embossed盲文打印
+only:限定某种设备类型
+and：连接设备名与选择条件/选择条件1 2 3……
+not:排出某种设备
+eg:
+    @media only screen and (min-width: 480px) and (max-width: 767px){
+        CSS列表
+        #选择器
+        {
+
+        }
+    }
+
+
+第四章：响应式中的HTML5
+
+在H5中很多标签没有必要写结束标签。
+<img src="">，不用写“/”也可以识别
+
+<a>的特别用法
+<a href="index.html">
+    <h2>The home page</h2>
+    <p>This paragraph also links to the home page</p>
+    <img src="home-image.png" alt="home-slice" />
+</a>
+这样等价于
+<h2><a href="index.html">The home page</a></h2>
+<p><a href="index.html">This paragraph also links to the home page</a></p>
+<a href="index.html"><img src="home-image.png" alt="home-slice" /></a>
+
+最终章节：手机媒体
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+width:可视区域的宽度，值可为数字或关键词device-width
+height:同width
+initial-scale:页面首次被显示是可视区域的缩放级别，取值1.0则页面按实际尺寸显示，无任何缩放
+maximum-scale=1.0, minimum-scale=1.0;可视区域的缩放级别，
+maximum-scale用户可将页面放大的程序，1.0将禁止用户放大到实际尺寸之上。
+user-scalable:是否可对页面进行缩放，no 禁止缩放
+
+html{-webkit-text-size-adjust:none;}防止横屏时字体发生缩放(一般用100%这个值)
+
+
+
+第五章：手机中提高体验的css，扩展css
+*placeholder    placeholder="请输入手机号码"
+                修改placeholder颜色：
+                //伪元素
+                ::-webkit-input-placeholder { /* WebKit browsers */
+                    color:    #999;
+                    text-align: center
+                }
+                //伪类
+                :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+                    color:    #999;
+                }
+                //伪元素
+                ::-moz-placeholder { /* Mozilla Firefox 19+ */
+                    color:    #999;
+                }
+                //伪类
+                :-ms-input-placeholder { /* Internet Explorer 10+ */
+                    color:    #999;
+                }
+*<a>/input/button
+-webkit-touch-callout   是否禁用长按弹出的菜单   none：系统默认菜单被禁用    inherit：系统默认菜单不被禁用
+-webkit-tap-highlight-color   长按链接块，显示的颜色。值：#000000  / rgba(0,0,0,透明度);
+-webkit-overflow-scrolling             auto：默认，效果就是滑动时比较死，没有缓冲效果；touch：当我们滑动很长的列表时，会有一个减速的缓冲减速效果
