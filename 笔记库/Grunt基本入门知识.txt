@@ -1,0 +1,71 @@
+一、安装Grunt cli客户端(在此之前必须有nodejs的安装，通过nodejs内部的npm才能安装grunt-cli)
+    （1）npm install -g grunt-cli
+执行后，“grunt命令”而不是Grunt，就被加入到你的系统路径中了，以后就可以在任何目录下执行此命令了，Grunt CLI的任务很简单：调用与Gruntfile.js在同一目录中Grunt
+(即不同的项目用不同的Grungfile.js，而不同的Gruntfile.js则定义了不同的依赖等等，从而实现不同的需求)。
+这样就可以在不同的项目中安装不同的grunt
+二、在根目录下将——“package.json” 和 “Gruntfile.js" 两个文件放入
+    1、npm install  安装项目依赖的库文件
+    2、执行 grunt 命令
+三、基本配置
+ 1、package.json: 此文件被npm用于存储项目的元数据。文件会列出项目依赖的grunt和Grunt插件，放置于devDependencies配置段内。
+	package.json应当放置于项目的根目录中，与Gruntfile在同一目录中，并且应该与项目的源代码一起被提交。
+	在上述目录(package.json所在目录)中运行npm install将依据package.json文件中所列出的每个依赖来自动安装适当版本的依赖。
+    npm init命令会创建一个基本的package.json文件。
+    demo：
+    {
+      "name": "my-project-name",
+      "version": "0.1.0",
+      "devDependencies": {
+        "grunt": "~0.4.5",
+        "grunt-contrib-jshint": "~0.10.0",
+        "grunt-contrib-nodeunit": "~0.4.1",
+        "grunt-contrib-uglify": "~0.5.0"
+      }
+    }
+
+    向已经存在的package.json 文件中添加Grunt和grunt插件的最简单方式是通过npm install <module> --save-dev命令。此命令不光安装了<module>，还会自动将其添加到devDependencies 配置段中，
+    遵循tilde version range格式。
+    例如，下面这条命令将安装Grunt最新版本到项目目录中，并将其添加到devDependencies内：
+    npm install grunt --save-dev
+    同样，grunt插件和其它node模块都可以按相同的方式安装。下面展示的实例就是安装 JSHint 任务模块：
+    npm install grunt-contrib-jshint --save-dev
+
+
+
+
+
+Gruntfile.js: 此文件被命名为 Gruntfile.js 或 Gruntfile.coffee，用来配置或定义任务（task）并加载Grunt插件的。
+此文件由四个部分组成
+{
+    "wrapper" 函数
+    项目与任务配置
+    加载grunt插件和任务
+    自定义任务
+}
+
+例子：
+在下面列出的这个 Gruntfile 中，package.json文件中的项目元数据（metadata）被导入到 Grunt 配置中， grunt-contrib-uglify 插件中的uglify 任务（task）被配置为压缩（minify）源码文件
+并依据上述元数据动态生成一个文件头注释。当在命令行中执行 grunt 命令时，uglify 任务将被默认执行。
+module.exports = function(grunt) {
+
+  // Project configuration.项目配置
+  grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+    uglify: {
+      options: {
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+      },
+      build: {
+        src: 'src/<%= pkg.name %>.js',
+        dest: 'build/<%= pkg.name %>.min.js'
+      }
+    }
+  });
+
+  // 加载包含 "uglify" 任务的插件。
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+
+  // 默认被执行的任务列表。
+  grunt.registerTask('default', ['uglify']);
+
+};
