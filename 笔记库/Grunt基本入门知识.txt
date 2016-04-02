@@ -1,3 +1,4 @@
+Grunt入门
 一、安装Grunt cli客户端(在此之前必须有nodejs的安装，通过nodejs内部的npm才能安装grunt-cli)
     （1）npm install -g grunt-cli
 执行后，“grunt命令”而不是Grunt，就被加入到你的系统路径中了，以后就可以在任何目录下执行此命令了，Grunt CLI的任务很简单：调用与Gruntfile.js在同一目录中Grunt
